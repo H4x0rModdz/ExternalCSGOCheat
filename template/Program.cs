@@ -77,33 +77,33 @@ namespace CSGO
             #endregion
 
             #region TriggerBot
-            //while (true)
-            //{
-            //    if (GetAsyncKeyState(Keys.LShiftKey) < 0)
-            //    {
-            //        var buffer = swed.ReadPointer(client, localPlayer);
-            //        var crosshair = BitConverter.ToInt32(swed.ReadBytes(buffer, crosshairId, 4), 0);
-            //        var ourTeam = BitConverter.ToInt32(swed.ReadBytes(buffer, team, 4), 0);
+            while (true)
+            {
+                if (GetAsyncKeyState(Keys.LShiftKey) < 0)
+                {
+                    var buffer = swed.ReadPointer(client, localPlayer);
+                    var crosshair = BitConverter.ToInt32(swed.ReadBytes(buffer, crosshairId, 4), 0);
+                    var ourTeam = BitConverter.ToInt32(swed.ReadBytes(buffer, team, 4), 0);
 
-            //        var enemy = swed.ReadPointer(client, entityList + (crosshair - 1) * 0x10);
-            //        var enemyTeam = BitConverter.ToInt32(swed.ReadBytes(enemy, team, 4), 0);
-            //        var enemyHealth = BitConverter.ToInt32(swed.ReadBytes(enemy, health, 4), 0);
-
-
-            //        //Console.WriteLine("Triggerbot ON!"); <-- IGNORE THIS
+                    var enemy = swed.ReadPointer(client, entityList + (crosshair - 1) * 0x10);
+                    var enemyTeam = BitConverter.ToInt32(swed.ReadBytes(enemy, team, 4), 0);
+                    var enemyHealth = BitConverter.ToInt32(swed.ReadBytes(enemy, health, 4), 0);
 
 
-            //        if (ourTeam != enemyTeam && enemyHealth > 1)
-            //        {
-            //            swed.WriteBytes(client, forceAttack, BitConverter.GetBytes(5));
-            //            Thread.Sleep(1);
-            //            swed.WriteBytes(client, forceAttack, BitConverter.GetBytes(4));                    
-            //        }
+                    //Console.WriteLine("Triggerbot ON!"); <-- IGNORE THIS
 
-            //    }
-            //    Thread.Sleep(1);
-                
-            //}
+
+                    if (ourTeam != enemyTeam && enemyHealth > 1)
+                    {
+                        swed.WriteBytes(client, forceAttack, BitConverter.GetBytes(5));
+                        Thread.Sleep(1);
+                        swed.WriteBytes(client, forceAttack, BitConverter.GetBytes(4));
+                    }
+
+                }
+                Thread.Sleep(1);
+
+            }
             #endregion
 
             #region Aimbot
@@ -114,7 +114,7 @@ namespace CSGO
 
             while (true)
             {
-                if (GetAsyncKeyState(Keys.LShiftKey) < 0)
+                if (GetAsyncKeyState(Keys.CapsLock) < 0)
                 {
                     updateLocal();
                     updateEntities();
